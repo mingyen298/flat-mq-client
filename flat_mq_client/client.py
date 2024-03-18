@@ -57,7 +57,7 @@ class GMqttClient(IMqttClient):
 
     async def __onMessageReceived(self, client, topic, payload, qos, properties) -> None:
         if self.on_msg is not None:
-            self.on_msg(topic, payload, qos)
+            await self.on_msg(topic, payload, qos)
 
     def __onDisconnected(self, client, packet, exc=None) -> None:
         if self.on_disconnect is not None:
