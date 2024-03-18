@@ -22,8 +22,8 @@ class GMqttClient(IMqttClient):
         self._client.on_message = self.__onMessageReceived
         self._client.on_disconnect = self.__onDisconnected
         if options.user_name != "" and options.password != "":
-            self._client.set_auth_credentials(
-                username=options.user_name, password=options.password)
+            self._client.set_auth_credentials(username=options.user_name,
+                                              password=options.password)
 
         await self._client.connect(host=options.host,
                                    port=options.port,
@@ -37,8 +37,8 @@ class GMqttClient(IMqttClient):
     async def stopAsync(self) -> None:
         await self._client.disconnect()
 
-    def publish(self, topic: str, msg: Union[str, bytes]) -> None:
-        self._client.publish(topic, payload=msg, qos=0)
+    def publish(self, topic: str, msg: Union[str, bytes], qos: int = 0) -> None:
+        self._client.publish(topic, payload=msg, qos=qos)
 
     def subscribe(self, topic: str, qos: int = 0) -> None:
         self._client.subscribe(topic, qos=qos)
