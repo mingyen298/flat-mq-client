@@ -10,6 +10,7 @@ setup(
     url='https://github.com/mingyen298/flat-mq-client',
     packages=find_packages(exclude=["tests*"]), 
     install_requires=[
-        "gmqtt==0.6.14"
+        "gmqtt==0.6.14",
+        "asyncio==3.4.3"
     ],  
 )

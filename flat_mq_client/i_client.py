@@ -1,14 +1,14 @@
 from collections.abc import Callable
 from .client_options import MqttClientOptions
 from typing import Union
-
+import asyncio
 class IMqttClient:
 
     def __init__(self) -> None:
         self._options: MqttClientOptions = None
         self.on_connect: Callable = None
         self.on_disconnect: Callable = None
-        self.on_msg: Callable[[str, bytes, int], None] = None
+        self.on_msg: Callable[[str, bytes, int], asyncio.Awaitable[None]] = None
 
     @property
     def is_connected(self):
